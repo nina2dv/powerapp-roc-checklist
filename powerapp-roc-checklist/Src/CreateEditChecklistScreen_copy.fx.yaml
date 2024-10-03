@@ -1,0 +1,1604 @@
+"CreateEditChecklistScreen_copy As screen.'headerFormLayout_ver1.0'":
+    Fill: =Color.White
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+
+    ScreenContainer1_3 As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =Parent.Width
+        ZIndex: =1
+
+        HeaderContainer1_3 As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            FillPortions: =0
+            Height: =75
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            ZIndex: =1
+
+            Header1_3 As Header:
+                DisplayMode: =DisplayMode.Edit
+                Height: =75
+                IsLogoVisible: =false
+                IsProfilePictureVisible: =true
+                LayoutMinHeight: =75
+                LayoutMinWidth: =Parent.Width
+                OnSelectLogo: =false
+                Title: =selectedChecklist.'Checklist ID'
+                UserEmail: =User().Email
+                UserImage: =User().Image
+                UserName: =User().FullName
+                Width: =Parent.Width
+                X: =0
+                Y: =0
+                ZIndex: =2
+
+        MainContainer1_3 As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutGap: =16
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            LayoutWrap: =true
+            PaddingBottom: =2
+            PaddingLeft: =2
+            PaddingRight: =2
+            PaddingTop: =2
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            ZIndex: =3
+
+            FormContainer1_3 As groupContainer.verticalAutoLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                DropShadow: =DropShadow.Light
+                FillPortions: =7
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutGap: =16
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                LayoutOverflowY: =LayoutOverflow.Scroll
+                PaddingBottom: =15
+                PaddingLeft: =15
+                PaddingRight: =15
+                PaddingTop: =15
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =4
+
+                FormCreateEditChecklist_2 As form.PowerApps_CoreControls_Form:
+                    AcceptsFocus: =true
+                    BorderColor: =App.Theme.Colors.Darker40
+                    DataSource: =Checklists
+                    DefaultMode: |
+                        =If(
+                            IsBlank(selectedChecklist),
+                            FormMode.New,
+                            FormMode.Edit
+                        )
+                    Item: |
+                        =If(
+                            IsBlank(selectedChecklist),
+                            Defaults(Checklists),
+                            selectedChecklist
+                        )
+                    LayoutMinHeight: =250
+                    LayoutMinWidth: =0
+                    NumberOfColumns: =1
+                    OnFailure: =Notify("There was an error submitting the checklist. Please try again.", NotificationType.Error)
+                    OnSuccess: |
+                        =
+                        Patch(
+                            Checklists,
+                            FormCreateEditChecklist_2.LastSubmit,
+                            {        
+                                create_timestamp: If(
+                                    IsBlank(selectedChecklist),
+                                    Now(),
+                                    FormCreateEditChecklist_2.LastSubmit.create_timestamp
+                                ),
+                                last_modified_timestamp: Now(),
+                                Status: If(
+                                    IsBlank(selectedChecklist),
+                                    { Value: "In Progress" },
+                                    FormCreateEditChecklist_2.LastSubmit.Status
+                                )
+                            }
+                        );
+                        Notify("Checklist submitted successfully!", NotificationType.Success);
+                        ResetForm(FormCreateEditChecklist_2);
+                        Navigate(Dashboard, ScreenTransition.Fade)
+                    UseFluentV9Cards: =true
+                    ZIndex: =5
+
+                    "'Checklist ID_DataCard1_3' As typedDataCard.fluentV9TextualEditCard":
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="Title"
+                        Default: =ThisItem.'Checklist ID'
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,'Checklist ID')
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        MaxLength: =DataSourceInfo([@Checklists], DataSourceInfo.MaxLength, 'Checklist ID')
+                        Required: =false
+                        Update: =DataCardValue1_3.Value
+                        Width: =800
+                        X: =0
+                        Y: =0
+                        ZIndex: =6
+
+                        StarVisible1_3 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey1_3.Y
+                            ZIndex: =7
+
+                        DataCardKey1_3 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =8
+
+                        "DataCardValue1_3 As 'Text input'":
+                            AccessibleLabel: =Parent.DisplayName
+                            BasePaletteColor: =
+                            BorderColor: =RGBA(53, 61, 63, 1)
+                            BorderRadius: =5
+                            BorderThickness: =2
+                            DisplayMode: =Parent.DisplayMode
+                            FontStrikethrough: =false
+                            FontUnderline: =false
+                            Height: =32
+                            Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                            Required: =Parent.Required
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Value: =Parent.Default
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey1_3.Y + DataCardKey1_3.Height + 4
+                            ZIndex: =9
+
+                        ErrorMessage1_3 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue1_3.Y + DataCardValue1_3.Height
+                            ZIndex: =10
+
+                    information_transferred_to_DataCard1_2 As typedDataCard.fluentV9ComboBoxEditCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="information_transferred_to"
+                        Default: =ThisItem.information_transferred_to
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,information_transferred_to)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        Required: =false
+                        Update: |
+                            =
+                            
+                            
+                            {
+                                '@odata.type': "#Microsoft.Azure.Connectors.SharePoint.SPListExpandedUser",
+                                Claims: "i:0#.f|membership|" & If(IsBlank(ComboBox2_2.Selected.Mail), "default@domain.com", ComboBox2_2.Selected.Mail),
+                                DisplayName: If(IsBlank(ComboBox2_2.Selected.DisplayName), "Default User", ComboBox2_2.Selected.DisplayName),
+                                Email: If(IsBlank(ComboBox2_2.Selected.Mail), "default@domain.com", ComboBox2_2.Selected.Mail)
+                            }
+                        Width: =800
+                        X: =0
+                        Y: =1
+                        ZIndex: =11
+
+                        StarVisible29_2 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =20
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey45_2.Y
+                            ZIndex: =12
+
+                        DataCardKey45_2 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: |-
+                                ="Information transferred to:"
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =13
+
+                        ComboBox2_2 As combobox:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            ChevronBackground: =App.Theme.Colors.Primary
+                            ChevronDisabledBackground: =RGBA(166, 166, 166, 1)
+                            ChevronDisabledFill: =RGBA(244, 244, 244, 1)
+                            ChevronFill: =App.Theme.Colors.PrimaryForeground
+                            ChevronHoverBackground: =App.Theme.Colors.Darker10
+                            ChevronHoverFill: =App.Theme.Colors.PrimaryForeground
+                            DefaultSelectedItems: =selectedChecklist.information_transferred_to
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            DisplayFields: =["City"]
+                            Font: =App.Theme.Font
+                            HoverColor: =RGBA(0, 0, 0, 1)
+                            HoverFill: =App.Theme.Colors.Lighter70
+                            InputTextPlaceholder: ="Search for user"
+                            Items: |-
+                                =Filter(Office365Users.SearchUserV2(
+                                    {
+                                        searchTerm: Trim(Self.SearchText),
+                                        isSearchTermRequired: true
+                                    }
+                                ).value,
+                                AccountEnabled = true && Not("#EXT" in UserPrincipalName))
+                            PressedColor: =App.Theme.Colors.PrimaryForeground
+                            PressedFill: =App.Theme.Colors.Darker30
+                            SearchFields: =["City"]
+                            SearchItems: |-
+                                =Search(Filter(Office365Users.SearchUserV2({searchTerm:Trim(Self.SearchText),isSearchTermRequired: true }).value,AccountEnabled= true &&Not("#EXT" in UserPrincipalName)),ComboBox2_2.SearchText,City)
+                            SelectionColor: =App.Theme.Colors.PrimaryForeground
+                            SelectionFill: =App.Theme.Colors.Primary
+                            SelectMultiple: =false
+                            Size: =13
+                            Template: =ListItemTemplate.Double
+                            X: =40
+                            Y: =40
+                            ZIndex: =14
+
+                        ErrorMessage29_2 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =ComboBox2_2.Y + ComboBox2_2.Height
+                            ZIndex: =15
+
+                    shift_DataCard2_2 As typedDataCard.fluentV9ComboBoxEditCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="shift"
+                        Default: =ThisItem.shift
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,shift)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        Required: =false
+                        Update: =DataCardValue42_2.Selected
+                        Width: =800
+                        X: =0
+                        Y: =2
+                        ZIndex: =16
+
+                        StarVisible28_2 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =20
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey44_2.Y
+                            ZIndex: =17
+
+                        DataCardKey44_2 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: |-
+                                ="Select shift:"
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =18
+
+                        DataCardValue42_2 As Combobox.pcfdataset:
+                            AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                            BorderColor: =RGBA(53, 61, 63, 1)
+                            BorderRadius: =5
+                            BorderThickness: =2
+                            DefaultSelectedItems: =[Parent.Default]
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =32
+                            Items: =Choices([@Checklists].shift)
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey44_2.Y + DataCardKey44_2.Height + 4
+                            ZIndex: =19
+
+                        ErrorMessage28_2 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue42_2.Y + DataCardValue42_2.Height
+                            ZIndex: =20
+
+                    "'Location _DataCard4_3' As typedDataCard.fluentV9TextualEditCard":
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="field_1"
+                        Default: =ThisItem.'Location '
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,'Location ')
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        MaxLength: =DataSourceInfo([@Checklists], DataSourceInfo.MaxLength, 'Location ')
+                        Required: =false
+                        Update: =ddLocation_3.Selected.'Location Name'
+                        Width: =800
+                        X: =0
+                        Y: =3
+                        ZIndex: =21
+
+                        StarVisible13_3 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey14_3.Y
+                            ZIndex: =22
+
+                        DataCardKey14_3 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =23
+
+                        ddLocation_3 As dropdown:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            ChevronBackground: =App.Theme.Colors.Primary
+                            ChevronDisabledBackground: =RGBA(166, 166, 166, 1)
+                            ChevronDisabledFill: =RGBA(244, 244, 244, 1)
+                            ChevronFill: =App.Theme.Colors.PrimaryForeground
+                            ChevronHoverBackground: =App.Theme.Colors.Darker10
+                            ChevronHoverFill: =App.Theme.Colors.PrimaryForeground
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            Font: =App.Theme.Font
+                            HoverColor: =RGBA(0, 0, 0, 1)
+                            HoverFill: =App.Theme.Colors.Lighter70
+                            Items: =Locations
+                            OnChange: |
+                                =false
+                            PressedColor: =App.Theme.Colors.PrimaryForeground
+                            PressedFill: =App.Theme.Colors.Darker30
+                            SelectionColor: =App.Theme.Colors.PrimaryForeground
+                            SelectionFill: =App.Theme.Colors.Primary
+                            Size: =13
+                            Tooltip: ="Select Location"
+                            X: =40
+                            Y: =40
+                            ZIndex: =24
+
+                        ErrorMessage13_3 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =ddLocation_3.Y + ddLocation_3.Height
+                            ZIndex: =25
+
+                    RemainingOperators_DataCard1_3 As typedDataCard.fluentV9ToggleEditCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="RemainingOperators"
+                        Default: =ThisItem.RemainingOperators
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,RemainingOperators)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        Required: =false
+                        Update: =DataCardValue4_3.Checked
+                        Width: =800
+                        X: =0
+                        Y: =4
+                        ZIndex: =26
+
+                        StarVisible5_3 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey5_3.Y
+                            ZIndex: =27
+
+                        DataCardKey5_3 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =28
+
+                        DataCardValue4_3 As Toggle:
+                            AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                            Checked: =Parent.Default
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =32
+                            Label: =""
+                            OnCheck: =false
+                            OnUncheck: =false
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =32
+                            ZIndex: =29
+
+                        ErrorMessage5_3 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue4_3.Y + DataCardValue4_3.Height
+                            ZIndex: =30
+
+                    emergencies_incidents_DataCard2_1 As typedDataCard.fluentV9ToggleEditCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="emergencies_incident"
+                        Default: =ThisItem.emergencies_incidents
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,emergencies_incidents)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        Required: =false
+                        Update: =emergencies_incidents_toggle_1.Value
+                        Width: =800
+                        X: =0
+                        Y: =5
+                        ZIndex: =31
+
+                        StarVisible4_1 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey4_1.Y
+                            ZIndex: =32
+
+                        DataCardKey4_1 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =33
+
+                        emergencies_incidents_toggle_1 As toggleSwitch:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(0, 0, 0, 1)
+                            FalseFill: =RGBA(128, 130, 133, 1)
+                            Font: =App.Theme.Font
+                            HandleFill: =RGBA(255, 255, 255, 1)
+                            Size: =13
+                            TrueFill: =App.Theme.Colors.Primary
+                            X: =30
+                            Y: =40
+                            ZIndex: =34
+
+                        ErrorMessage4_1 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =emergencies_incidents_toggle_1.Y + emergencies_incidents_toggle_1.Height
+                            ZIndex: =35
+
+                    emergencies_incidents_operator_DataCard2_1 As typedDataCard.fluentV9ComboBoxEditCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="emergencies_incidents_operator"
+                        Default: =ThisItem.emergencies_incidents_operator
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,emergencies_incidents_operator)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        Required: =emergencies_incidents_toggle_1.Value
+                        Update: |
+                            =If(emergencies_incidents_toggle_1.Value,
+                            {
+                                '@odata.type': "#Microsoft.Azure.Connectors.SharePoint.SPListExpandedUser",
+                                Claims: "i:0#.f|membership|" & emergencies_incidents_operator_box_1.Selected.Mail,
+                                DisplayName: emergencies_incidents_operator_box_1.Selected.DisplayName,
+                                Email: emergencies_incidents_operator_box_1.Selected.Mail
+                            },
+                            Blank()
+                            )
+                        Visible: =emergencies_incidents_toggle_1.Value
+                        Width: =800
+                        X: =0
+                        Y: =6
+                        ZIndex: =36
+
+                        StarVisible30_1 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =20
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey46_1.Y
+                            ZIndex: =37
+
+                        DataCardKey46_1 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =38
+
+                        emergencies_incidents_operator_box_1 As combobox:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            ChevronBackground: =App.Theme.Colors.Primary
+                            ChevronDisabledBackground: =RGBA(166, 166, 166, 1)
+                            ChevronDisabledFill: =RGBA(244, 244, 244, 1)
+                            ChevronFill: =App.Theme.Colors.PrimaryForeground
+                            ChevronHoverBackground: =App.Theme.Colors.Darker10
+                            ChevronHoverFill: =App.Theme.Colors.PrimaryForeground
+                            DefaultSelectedItems: |
+                                =If(
+                                    FormCreateEditChecklist_2.Mode = FormMode.Edit && !IsBlank(ThisItem.emergencies_incidents_operator.Email),
+                                    [
+                                        Office365Users.UserProfileV2(ThisItem.emergencies_incidents_operator.Email)
+                                    ],
+                                    []
+                                )
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            DisplayFields: =["City"]
+                            Font: =App.Theme.Font
+                            HoverColor: =RGBA(0, 0, 0, 1)
+                            HoverFill: =App.Theme.Colors.Lighter70
+                            InputTextPlaceholder: ="Search for user"
+                            Items: |-
+                                =Filter(Office365Users.SearchUserV2(
+                                    {
+                                        searchTerm: Trim(Self.SearchText),
+                                        isSearchTermRequired: true
+                                    }
+                                ).value,
+                                AccountEnabled = true && Not("#EXT" in UserPrincipalName))
+                            PressedColor: =App.Theme.Colors.PrimaryForeground
+                            PressedFill: =App.Theme.Colors.Darker30
+                            SearchFields: =["City"]
+                            SearchItems: |-
+                                =Search(Filter(Office365Users.SearchUserV2({searchTerm:Trim(Self.SearchText),isSearchTermRequired: true }).value,AccountEnabled= true &&Not("#EXT" in UserPrincipalName)),emergencies_incidents_operator_box_1.SearchText,City)
+                            SelectionColor: =App.Theme.Colors.PrimaryForeground
+                            SelectionFill: =App.Theme.Colors.Primary
+                            SelectMultiple: =false
+                            Size: =13
+                            Template: =ListItemTemplate.Double
+                            X: =40
+                            Y: =30
+                            ZIndex: =39
+
+                        ErrorMessage30_1 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =emergencies_incidents_operator_box_1.Y + emergencies_incidents_operator_box_1.Height
+                            ZIndex: =40
+
+                    emergencies_incidents_location_DataCard2_1 As typedDataCard.fluentV9TextualEditCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="emergencies_incidents_location"
+                        Default: |-
+                            =If(
+                                FormCreateEditChecklist_2.Mode = FormMode.Edit,
+                                ThisItem.emergencies_incidents_location,
+                                ""
+                            )
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,emergencies_incidents_location)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        MaxLength: =DataSourceInfo([@Checklists], DataSourceInfo.MaxLength, emergencies_incidents_location)
+                        Required: =emergencies_incidents_toggle_1.Value
+                        Update: |-
+                            =If(
+                                emergencies_incidents_toggle_1.Value,
+                                emergencies_incidents_location_box_1.Value,
+                                Blank()
+                            )
+                        Visible: =emergencies_incidents_toggle_1.Value
+                        Width: =800
+                        X: =0
+                        Y: =7
+                        ZIndex: =41
+
+                        StarVisible21_1 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey21_1.Y
+                            ZIndex: =42
+
+                        DataCardKey21_1 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =43
+
+                        "emergencies_incidents_location_box_1 As 'Text input'":
+                            AccessibleLabel: =Parent.DisplayName
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =32
+                            Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                            Required: =Parent.Required
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Value: =Parent.Default
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey21_1.Y + DataCardKey21_1.Height + 4
+                            ZIndex: =44
+
+                        ErrorMessage21_1 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =emergencies_incidents_location_box_1.Y + emergencies_incidents_location_box_1.Height
+                            ZIndex: =45
+
+                    emergencies_incidents_details_DataCard3_1 As typedDataCard.fluentV9TextualMultiLineEditCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="Emergencies"
+                        Default: |-
+                            =If(
+                                FormCreateEditChecklist_2.Mode = FormMode.Edit,
+                                ThisItem.emergencies_incidents_details,
+                                ""
+                            )
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,emergencies_incidents_details)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =166
+                        Required: =emergencies_incidents_toggle_1.Value
+                        Update: |-
+                            =If(
+                                emergencies_incidents_toggle_1.Value,
+                                emergencies_incidents_details_box_1.Value,
+                                Blank()
+                            )
+                        Visible: =emergencies_incidents_toggle_1.Value
+                        Width: =800
+                        X: =0
+                        Y: =8
+                        ZIndex: =46
+
+                        StarVisible31_1 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey47_1.Y
+                            ZIndex: =47
+
+                        DataCardKey47_1 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =48
+
+                        "emergencies_incidents_details_box_1 As 'Text input'":
+                            AccessibleLabel: =Parent.DisplayName
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =144
+                            Mode: ='TextInputCanvas.Mode'.Multiline
+                            Required: =Parent.Required
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Value: =Parent.Default
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey47_1.Y + DataCardKey47_1.Height + 4
+                            ZIndex: =49
+
+                        ErrorMessage31_1 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =emergencies_incidents_details_box_1.Y + emergencies_incidents_details_box_1.Height
+                            ZIndex: =50
+
+                    outstanding_complaints_DataCard2_2 As typedDataCard.fluentV9ToggleEditCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="outstanding_complaints"
+                        Default: =ThisItem.outstanding_complaints
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,outstanding_complaints)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        Required: =false
+                        Update: =DataCardValue17_2.Checked
+                        Width: =800
+                        X: =0
+                        Y: =9
+                        ZIndex: =51
+
+                        StarVisible18_2 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey18_2.Y
+                            ZIndex: =52
+
+                        DataCardKey18_2 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =53
+
+                        DataCardValue17_2 As Toggle:
+                            AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                            Checked: =Parent.Default
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =32
+                            Label: =""
+                            OnCheck: =false
+                            OnUncheck: =false
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey18_2.Y + DataCardKey18_2.Height + 4
+                            ZIndex: =54
+
+                        ErrorMessage18_2 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue17_2.Y + DataCardValue17_2.Height
+                            ZIndex: =55
+
+                    outstanding_complaints_operator_DataCard2_2 As typedDataCard.fluentV9ComboBoxEditCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="outstanding_complaints_operator"
+                        Default: =ThisItem.outstanding_complaints_operator
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,outstanding_complaints_operator)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        Required: =false
+                        Update: =DataCardValue19_2.Selected
+                        Width: =800
+                        X: =0
+                        Y: =10
+                        ZIndex: =56
+
+                        StarVisible20_2 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =20
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey20_2.Y
+                            ZIndex: =57
+
+                        DataCardKey20_2 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =58
+
+                        DataCardValue19_2 As Combobox.pcfdataset:
+                            AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                            DefaultSelectedItems: =[Parent.Default]
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =32
+                            Items: =Choices([@Checklists].outstanding_complaints_operator)
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey20_2.Y + DataCardKey20_2.Height + 4
+                            ZIndex: =59
+
+                        ErrorMessage20_2 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue19_2.Y + DataCardValue19_2.Height
+                            ZIndex: =60
+
+                    outstanding_complaints_location_DataCard2_2 As typedDataCard.fluentV9TextualEditCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="outstanding_complaints_location"
+                        Default: =ThisItem.outstanding_complaints_location
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,outstanding_complaints_location)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        MaxLength: =DataSourceInfo([@Checklists], DataSourceInfo.MaxLength, outstanding_complaints_location)
+                        Required: =false
+                        Update: =DataCardValue11_2.Value
+                        Width: =800
+                        X: =0
+                        Y: =11
+                        ZIndex: =61
+
+                        StarVisible14_2 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey13_2.Y
+                            ZIndex: =62
+
+                        DataCardKey13_2 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =63
+
+                        "DataCardValue11_2 As 'Text input'":
+                            AccessibleLabel: =Parent.DisplayName
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =32
+                            Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                            Required: =Parent.Required
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Value: =Parent.Default
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey13_2.Y + DataCardKey13_2.Height + 4
+                            ZIndex: =64
+
+                        ErrorMessage14_2 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue11_2.Y + DataCardValue11_2.Height
+                            ZIndex: =65
+
+                    outstanding_complaints_details_DataCard1_2 As typedDataCard.fluentV9TextualMultiLineEditCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="OutstandingComplaints"
+                        Default: =ThisItem.outstanding_complaints_details
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,outstanding_complaints_details)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =166
+                        Required: =false
+                        Update: =DataCardValue51_2.Value
+                        Width: =800
+                        X: =0
+                        Y: =12
+                        ZIndex: =66
+
+                        StarVisible36_2 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey53_2.Y
+                            ZIndex: =67
+
+                        DataCardKey53_2 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =68
+
+                        "DataCardValue51_2 As 'Text input'":
+                            AccessibleLabel: =Parent.DisplayName
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =144
+                            Mode: ='TextInputCanvas.Mode'.Multiline
+                            Required: =Parent.Required
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Value: =Parent.Default
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey53_2.Y + DataCardKey53_2.Height + 4
+                            ZIndex: =69
+
+                        ErrorMessage36_2 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue51_2.Y + DataCardValue51_2.Height
+                            ZIndex: =70
+
+                    interim_procedures_new_existing_DataCard1_2 As typedDataCard.fluentV9ToggleEditCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="interim_procedures_new_existing"
+                        Default: =ThisItem.interim_procedures_new_existing
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,interim_procedures_new_existing)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        Required: =false
+                        Update: =DataCardValue15_2.Checked
+                        Width: =800
+                        X: =0
+                        Y: =13
+                        ZIndex: =71
+
+                        StarVisible16_2 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey16_2.Y
+                            ZIndex: =72
+
+                        DataCardKey16_2 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =73
+
+                        DataCardValue15_2 As Toggle:
+                            AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                            Checked: =Parent.Default
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =32
+                            Label: =""
+                            OnCheck: =false
+                            OnUncheck: =false
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey16_2.Y + DataCardKey16_2.Height + 4
+                            ZIndex: =74
+
+                        ErrorMessage16_2 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue15_2.Y + DataCardValue15_2.Height
+                            ZIndex: =75
+
+                    interim_procedures_operator_DataCard2_2 As typedDataCard.fluentV9ComboBoxEditCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="interim_procedures_operator"
+                        Default: =ThisItem.interim_procedures_operator
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,interim_procedures_operator)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        Required: =false
+                        Update: =DataCardValue16_2.Selected
+                        Width: =800
+                        X: =0
+                        Y: =14
+                        ZIndex: =76
+
+                        StarVisible17_2 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =20
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey17_2.Y
+                            ZIndex: =77
+
+                        DataCardKey17_2 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =78
+
+                        DataCardValue16_2 As Combobox.pcfdataset:
+                            AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                            DefaultSelectedItems: =[Parent.Default]
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =32
+                            Items: =Choices([@Checklists].interim_procedures_operator)
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey17_2.Y + DataCardKey17_2.Height + 4
+                            ZIndex: =79
+
+                        ErrorMessage17_2 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue16_2.Y + DataCardValue16_2.Height
+                            ZIndex: =80
+
+                    interim_procedures_location_DataCard1_2 As typedDataCard.fluentV9TextualEditCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="interim_procedures_location"
+                        Default: =ThisItem.interim_procedures_location
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,interim_procedures_location)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        MaxLength: =DataSourceInfo([@Checklists], DataSourceInfo.MaxLength, interim_procedures_location)
+                        Required: =false
+                        Update: =DataCardValue14_2.Value
+                        Width: =800
+                        X: =0
+                        Y: =15
+                        ZIndex: =81
+
+                        StarVisible15_2 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey15_2.Y
+                            ZIndex: =82
+
+                        DataCardKey15_2 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =83
+
+                        "DataCardValue14_2 As 'Text input'":
+                            AccessibleLabel: =Parent.DisplayName
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =32
+                            Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                            Required: =Parent.Required
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Value: =Parent.Default
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey15_2.Y + DataCardKey15_2.Height + 4
+                            ZIndex: =84
+
+                        ErrorMessage15_2 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue14_2.Y + DataCardValue14_2.Height
+                            ZIndex: =85
+
+                    interim_procedures_details_DataCard2_2 As typedDataCard.fluentV9TextualMultiLineEditCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="InterimProcedures"
+                        Default: =ThisItem.interim_procedures_details
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,interim_procedures_details)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =166
+                        Required: =false
+                        Update: =DataCardValue47_2.Value
+                        Width: =800
+                        X: =0
+                        Y: =16
+                        ZIndex: =86
+
+                        StarVisible33_2 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey49_2.Y
+                            ZIndex: =87
+
+                        DataCardKey49_2 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =88
+
+                        "DataCardValue47_2 As 'Text input'":
+                            AccessibleLabel: =Parent.DisplayName
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =144
+                            Mode: ='TextInputCanvas.Mode'.Multiline
+                            Required: =Parent.Required
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Value: =Parent.Default
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey49_2.Y + DataCardKey49_2.Height + 4
+                            ZIndex: =89
+
+                        ErrorMessage33_2 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue47_2.Y + DataCardValue47_2.Height
+                            ZIndex: =90
+
+                    SCADA_new_DataCard1_2 As typedDataCard.fluentV9ToggleEditCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="SCADA_new"
+                        Default: =ThisItem.SCADA_new
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,SCADA_new)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        Required: =false
+                        Update: =DataCardValue2_2.Checked
+                        Width: =800
+                        X: =0
+                        Y: =17
+                        ZIndex: =91
+
+                        StarVisible2_2 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey2_2.Y
+                            ZIndex: =92
+
+                        DataCardKey2_2 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =93
+
+                        DataCardValue2_2 As Toggle:
+                            AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                            Checked: =Parent.Default
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =32
+                            Label: =""
+                            OnCheck: =false
+                            OnUncheck: =false
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey2_2.Y + DataCardKey2_2.Height + 4
+                            ZIndex: =94
+
+                        ErrorMessage2_2 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue2_2.Y + DataCardValue2_2.Height
+                            ZIndex: =95
+
+                    SCADA_details_DataCard3_2 As typedDataCard.fluentV9TextualMultiLineEditCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="SCADAUpdates"
+                        Default: =ThisItem.SCADA_details
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,SCADA_details)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =166
+                        Required: =false
+                        Update: =DataCardValue52_2.Value
+                        Width: =800
+                        X: =0
+                        Y: =18
+                        ZIndex: =96
+
+                        StarVisible37_2 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey54_2.Y
+                            ZIndex: =97
+
+                        DataCardKey54_2 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =98
+
+                        "DataCardValue52_2 As 'Text input'":
+                            AccessibleLabel: =Parent.DisplayName
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =144
+                            Mode: ='TextInputCanvas.Mode'.Multiline
+                            Required: =Parent.Required
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Value: =Parent.Default
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey54_2.Y + DataCardKey54_2.Height + 4
+                            ZIndex: =99
+
+                        ErrorMessage37_2 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue52_2.Y + DataCardValue52_2.Height
+                            ZIndex: =100
+
+                    special_instruction_notes_DataCard4_2 As typedDataCard.fluentV9TextualMultiLineEditCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="SpecialInstructions"
+                        Default: =ThisItem.special_instruction_notes
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,special_instruction_notes)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =166
+                        Required: =false
+                        Update: =DataCardValue48_2.Value
+                        Width: =800
+                        X: =0
+                        Y: =19
+                        ZIndex: =101
+
+                        StarVisible34_2 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            X: =0
+                            Y: =DataCardKey50_2.Y
+                            ZIndex: =102
+
+                        DataCardKey50_2 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =103
+
+                        "DataCardValue48_2 As 'Text input'":
+                            AccessibleLabel: =Parent.DisplayName
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =144
+                            Mode: ='TextInputCanvas.Mode'.Multiline
+                            Required: =Parent.Required
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Value: =Parent.Default
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey50_2.Y + DataCardKey50_2.Height + 4
+                            ZIndex: =104
+
+                        ErrorMessage34_2 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =30
+                            Text: =Parent.Error
+                            Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =Parent.Width - 48
+                            Wrap: =true
+                            X: =24
+                            Y: =DataCardValue48_2.Y + DataCardValue48_2.Height
+                            ZIndex: =105
+
+                    RO_name_DataCard3_2 As typedDataCard.fluentV9ComboBoxViewCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="ROName"
+                        Default: =ThisItem.RO_name
+                        DisplayMode: =DisplayMode.View
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,RO_name)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =70
+                        Required: =false
+                        Width: =800
+                        X: =0
+                        Y: =20
+                        ZIndex: =106
+
+                        DataCardKey51_2 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =22
+                            Text: =Parent.DisplayName
+                            Weight: ='TextCanvas.Weight'.Semibold
+                            Width: =Parent.Width - 48
+                            Wrap: =false
+                            X: =24
+                            Y: =10
+                            ZIndex: =107
+
+                        DataCardValue49_2 As Combobox.pcfdataset:
+                            DefaultSelectedItems: =[Parent.Default]
+                            DisplayMode: =DisplayMode.View
+                            Height: =32
+                            Items: =Choices([@Checklists].RO_name)
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                            Width: =Parent.Width - 48
+                            X: =24
+                            Y: =DataCardKey51_2.Y + DataCardKey51_2.Height + 4
+                            ZIndex: =108
+
+                ButtonContainer1_3 As groupContainer.horizontalAutoLayoutContainer:
+                    DropShadow: =DropShadow.Light
+                    FillPortions: =0
+                    Height: =50
+                    LayoutGap: =10
+                    LayoutJustifyContent: =LayoutJustifyContent.End
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =0
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingBottom: =10
+                    PaddingRight: =24
+                    PaddingTop: =10
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    ZIndex: =109
+
+                    CancelButton1_3 As Button:
+                        AccessibleLabel: ="Cancel form button"
+                        AlignInContainer: =AlignInContainer.Center
+                        Appearance: ='ButtonCanvas.Appearance'.Secondary
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        OnSelect: =Navigate(Dashboard)
+                        Text: ="Cancel"
+                        Width: =120
+                        X: =0
+                        Y: =0
+                        ZIndex: =110
+
+                    btnSaveChecklist_2 As Button:
+                        AccessibleLabel: ="Save form button"
+                        AlignInContainer: =AlignInContainer.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        OnSelect: =SubmitForm(FormCreateEditChecklist_2)
+                        Text: ="Save"
+                        Width: =120
+                        X: =0
+                        Y: =0
+                        ZIndex: =111
+
+                    btnSubmitChecklist_2 As Button:
+                        AccessibleLabel: ="Submit form button"
+                        AlignInContainer: =AlignInContainer.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        OnSelect: |
+                            =SubmitForm(FormCreateEditChecklist_2);
+                            Navigate(Dashboard)
+                        Text: ="Submit"
+                        Width: =120
+                        X: =0
+                        Y: =0
+                        ZIndex: =112
+

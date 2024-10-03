@@ -1,0 +1,57 @@
+{
+  "07b219a3-3962-4313-bb3b-e950ebbef19a": {
+    "appActions": [
+      "SearchUser",
+      "SearchUserV2",
+      "UserProfile_V2"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Office 365 Users",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1715/1.0.1715.3906/office365users/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_office365users",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "Office365Users"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "07b219a3-3962-4313-bb3b-e950ebbef19a"
+  },
+  "f74fa50a-77e8-4e62-b30f-da917de52915": {
+    "appActions": [
+      "providers/PowerPlatform.Governance/Operations/Read",
+      "providers/PowerPlatform.Governance/Operations/Write"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/jayawan/releases/v1.0.1697/1.0.1697.3786/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://ykregion.sharepoint.com/teams/BusinessOperationsandTechnologySupport": {
+        "dataSources": {
+          "Checklists": {
+            "tableName": "67538c35-fdec-496f-8352-fe547b5ede91"
+          },
+          "Locations": {
+            "tableName": "c4187d3d-e576-4247-96d2-132d4acdb429"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "Checklists",
+      "Locations"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "f74fa50a-77e8-4e62-b30f-da917de52915"
+  }
+}

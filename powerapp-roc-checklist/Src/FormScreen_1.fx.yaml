@@ -1,0 +1,1871 @@
+"FormScreen_1 As screen.'headerFormLayout_ver1.0'":
+    Fill: =Color.White
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+
+    ScreenContainer3_1 As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =Parent.Width
+        ZIndex: =1
+
+        HeaderContainer2_1 As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            FillPortions: =0
+            Height: =75
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            ZIndex: =1
+
+            Header2_1 As Header:
+                DisplayMode: =DisplayMode.Edit
+                Height: =75
+                IsLogoVisible: =false
+                LayoutMinHeight: =75
+                LayoutMinWidth: =Parent.Width
+                OnSelectLogo: =false
+                Title: =SelectedForm.'Checklist ID'
+                UserEmail: =User().Email
+                UserImage: =User().Image
+                UserName: =User().FullName
+                Width: =Parent.Width
+                X: =0
+                Y: =0
+                ZIndex: =2
+
+        MainContainer2_1 As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutGap: =16
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            LayoutWrap: =true
+            PaddingBottom: =2
+            PaddingLeft: =2
+            PaddingRight: =2
+            PaddingTop: =2
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            ZIndex: =3
+
+            FormContainer2_1 As groupContainer.verticalAutoLayoutContainer:
+                DropShadow: =DropShadow.Light
+                FillPortions: =7
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutGap: =16
+                LayoutMinHeight: =10000
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                LayoutOverflowY: =LayoutOverflow.Scroll
+                LayoutWrap: =true
+                PaddingBottom: =15
+                PaddingLeft: =15
+                PaddingRight: =15
+                PaddingTop: =15
+                RadiusBottomLeft: =8
+                RadiusBottomRight: =8
+                RadiusTopLeft: =8
+                RadiusTopRight: =8
+                ZIndex: =4
+
+                Form2_1 As formViewer:
+                    AlignInContainer: =AlignInContainer.Center
+                    BorderColor: =App.Theme.Colors.Darker40
+                    DataSource: =Checklists
+                    Item: =SelectedForm
+                    LayoutMinHeight: =250
+                    LayoutMinWidth: =400
+                    NumberOfColumns: =1
+                    ZIndex: =1
+
+                    "'Checklist ID_DataCard2_1' As typedDataCard.textualViewCard":
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="Title"
+                        Default: =ThisItem.'Checklist ID'
+                        DisplayMode: =DisplayMode.View
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,'Checklist ID')
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =40
+                        Required: =false
+                        Width: =800
+                        X: =0
+                        Y: =0
+                        ZIndex: =6
+
+                        DataCardKey22_1 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            PaddingBottom: =0
+                            Size: =13
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =7
+
+                        DataCardValue20_1 As label:
+                            AutoHeight: =true
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(0, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =App.Theme.Font
+                            Height: =27
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =13
+                            Text: =Parent.Default
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey22_1.Y + DataCardKey22_1.Height + 5
+                            ZIndex: =8
+
+                    Status_DataCard1_1 As typedDataCard.comboBoxViewCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="Status"
+                        Default: =ThisItem.Status
+                        DisplayMode: =DisplayMode.View
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,Status)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        Required: =false
+                        Update: =DataCardValue23_1.Selected
+                        Width: =800
+                        X: =0
+                        Y: =1
+                        ZIndex: =9
+
+                        StarVisible22_1 As label:
+                            Align: =Align.Center
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =DataCardKey25_1.Height
+                            Size: =13
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =DataCardKey25_1.Y
+                            ZIndex: =10
+
+                        DataCardKey25_1 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            Size: =13
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =11
+
+                        DataCardValue23_1 As combobox:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            ChevronBackground: =App.Theme.Colors.Primary
+                            ChevronDisabledBackground: =RGBA(166, 166, 166, 1)
+                            ChevronDisabledFill: =RGBA(244, 244, 244, 1)
+                            ChevronFill: =App.Theme.Colors.PrimaryForeground
+                            ChevronHoverBackground: =App.Theme.Colors.Darker10
+                            ChevronHoverFill: =App.Theme.Colors.PrimaryForeground
+                            DefaultSelectedItems: =Parent.Default
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            DisplayFields: =["Value"]
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =App.Theme.Font
+                            HoverColor: =RGBA(0, 0, 0, 1)
+                            HoverFill: =App.Theme.Colors.Lighter70
+                            Items: =Choices([@Checklists].Status)
+                            PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                            PressedColor: =App.Theme.Colors.PrimaryForeground
+                            PressedFill: =App.Theme.Colors.Darker30
+                            SearchFields: =["Value"]
+                            SearchItems: =Choices(Checklists.Status,DataCardValue23_1.SearchText)
+                            SelectionColor: =App.Theme.Colors.PrimaryForeground
+                            SelectionFill: =App.Theme.Colors.Primary
+                            SelectMultiple: =false
+                            Size: =13
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey25_1.Y + DataCardKey25_1.Height + 5
+                            ZIndex: =12
+
+                        ErrorMessage22_1 As label:
+                            AutoHeight: =true
+                            Color: =RGBA(168, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            FontWeight: =FontWeight.Semibold
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardValue23_1.Y + DataCardValue23_1.Height
+                            ZIndex: =13
+
+                    information_transferred_to_DataCard2_1 As typedDataCard.comboBoxViewCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="information_transferred_to"
+                        Default: =ThisItem.information_transferred_to
+                        DisplayMode: =DisplayMode.View
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,information_transferred_to)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        Required: =false
+                        Update: =DataCardValue18_1.Selected
+                        Width: =800
+                        X: =0
+                        Y: =2
+                        ZIndex: =14
+
+                        StarVisible25_1 As label:
+                            Align: =Align.Center
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =DataCardKey23_1.Height
+                            Size: =13
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =DataCardKey23_1.Y
+                            ZIndex: =15
+
+                        DataCardKey23_1 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            Size: =13
+                            Text: |-
+                                ="Information transferred to:"
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =16
+
+                        DataCardValue18_1 As combobox:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            ChevronBackground: =App.Theme.Colors.Primary
+                            ChevronDisabledBackground: =RGBA(166, 166, 166, 1)
+                            ChevronDisabledFill: =RGBA(244, 244, 244, 1)
+                            ChevronFill: =App.Theme.Colors.PrimaryForeground
+                            ChevronHoverBackground: =App.Theme.Colors.Darker10
+                            ChevronHoverFill: =App.Theme.Colors.PrimaryForeground
+                            DefaultSelectedItems: =Parent.Default
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            DisplayFields: =["DisplayName","Email","Picture"]
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =App.Theme.Font
+                            HoverColor: =RGBA(0, 0, 0, 1)
+                            HoverFill: =App.Theme.Colors.Lighter70
+                            Items: =Choices([@Checklists].information_transferred_to)
+                            PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                            PressedColor: =App.Theme.Colors.PrimaryForeground
+                            PressedFill: =App.Theme.Colors.Darker30
+                            SearchFields: =["DisplayName"]
+                            SearchItems: =Choices(Checklists.information_transferred_to,DataCardValue18_1.SearchText)
+                            SelectionColor: =App.Theme.Colors.PrimaryForeground
+                            SelectionFill: =App.Theme.Colors.Primary
+                            SelectMultiple: =false
+                            Size: =13
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey23_1.Y + DataCardKey23_1.Height + 5
+                            ZIndex: =17
+
+                        ErrorMessage25_1 As label:
+                            AutoHeight: =true
+                            Color: =RGBA(168, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            FontWeight: =FontWeight.Semibold
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardValue18_1.Y + DataCardValue18_1.Height
+                            ZIndex: =18
+
+                    shift_DataCard1_1 As typedDataCard.comboBoxViewCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="shift"
+                        Default: =ThisItem.shift
+                        DisplayMode: =DisplayMode.View
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,shift)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        Required: =false
+                        Update: =DataCardValue29_1.Selected
+                        Width: =800
+                        X: =0
+                        Y: =3
+                        ZIndex: =19
+
+                        StarVisible24_1 As label:
+                            Align: =Align.Center
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =DataCardKey31_1.Height
+                            Size: =13
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =DataCardKey31_1.Y
+                            ZIndex: =20
+
+                        DataCardKey31_1 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            Size: =13
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =21
+
+                        DataCardValue29_1 As combobox:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            ChevronBackground: =App.Theme.Colors.Primary
+                            ChevronDisabledBackground: =RGBA(166, 166, 166, 1)
+                            ChevronDisabledFill: =RGBA(244, 244, 244, 1)
+                            ChevronFill: =App.Theme.Colors.PrimaryForeground
+                            ChevronHoverBackground: =App.Theme.Colors.Darker10
+                            ChevronHoverFill: =App.Theme.Colors.PrimaryForeground
+                            DefaultSelectedItems: =Parent.Default
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            DisplayFields: =["Value"]
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =App.Theme.Font
+                            HoverColor: =RGBA(0, 0, 0, 1)
+                            HoverFill: =App.Theme.Colors.Lighter70
+                            Items: =Choices([@Checklists].shift)
+                            PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                            PressedColor: =App.Theme.Colors.PrimaryForeground
+                            PressedFill: =App.Theme.Colors.Darker30
+                            SearchFields: =["Value"]
+                            SearchItems: =Choices(Checklists.shift,DataCardValue29_1.SearchText)
+                            SelectionColor: =App.Theme.Colors.PrimaryForeground
+                            SelectionFill: =App.Theme.Colors.Primary
+                            SelectMultiple: =false
+                            Size: =13
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey31_1.Y + DataCardKey31_1.Height + 5
+                            ZIndex: =22
+
+                        ErrorMessage24_1 As label:
+                            AutoHeight: =true
+                            Color: =RGBA(168, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            FontWeight: =FontWeight.Semibold
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardValue29_1.Y + DataCardValue29_1.Height
+                            ZIndex: =23
+
+                    Timestamp_DataCard2_1 As typedDataCard.textualViewCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="Timestamp"
+                        Default: =ThisItem.create_timestamp
+                        DisplayMode: =DisplayMode.View
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,create_timestamp)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =40
+                        Required: =false
+                        Width: =800
+                        X: =0
+                        Y: =4
+                        ZIndex: =24
+
+                        DataCardKey24_1 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            PaddingBottom: =0
+                            Size: =13
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =25
+
+                        DataCardValue22_1 As label:
+                            AutoHeight: =true
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(0, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =App.Theme.Font
+                            Height: =27
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =13
+                            Text: =Parent.Default
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey24_1.Y + DataCardKey24_1.Height + 5
+                            ZIndex: =26
+
+                Form2_2 As formViewer:
+                    AlignInContainer: =AlignInContainer.Center
+                    BorderColor: =App.Theme.Colors.Darker40
+                    DataSource: =Checklists
+                    Item: =SelectedForm
+                    LayoutMinHeight: =250
+                    LayoutMinWidth: =400
+                    NumberOfColumns: =1
+                    ZIndex: =2
+
+                    "'Checklist ID_DataCard2_2' As typedDataCard.textualViewCard":
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="Title"
+                        Default: =ThisItem.'Checklist ID'
+                        DisplayMode: =DisplayMode.View
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,'Checklist ID')
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =40
+                        Required: =false
+                        Width: =800
+                        X: =0
+                        Y: =0
+                        ZIndex: =6
+
+                        DataCardKey22_2 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            PaddingBottom: =0
+                            Size: =13
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =7
+
+                        DataCardValue20_2 As label:
+                            AutoHeight: =true
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(0, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =App.Theme.Font
+                            Height: =27
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =13
+                            Text: =Parent.Default
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey22_2.Y + DataCardKey22_2.Height + 5
+                            ZIndex: =8
+
+                    Status_DataCard1_2 As typedDataCard.comboBoxViewCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="Status"
+                        Default: =ThisItem.Status
+                        DisplayMode: =DisplayMode.View
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,Status)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        Required: =false
+                        Update: =DataCardValue23_2.Selected
+                        Width: =800
+                        X: =0
+                        Y: =1
+                        ZIndex: =9
+
+                        StarVisible22_2 As label:
+                            Align: =Align.Center
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =DataCardKey25_2.Height
+                            Size: =13
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =DataCardKey25_2.Y
+                            ZIndex: =10
+
+                        DataCardKey25_2 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            Size: =13
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =11
+
+                        DataCardValue23_2 As combobox:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            ChevronBackground: =App.Theme.Colors.Primary
+                            ChevronDisabledBackground: =RGBA(166, 166, 166, 1)
+                            ChevronDisabledFill: =RGBA(244, 244, 244, 1)
+                            ChevronFill: =App.Theme.Colors.PrimaryForeground
+                            ChevronHoverBackground: =App.Theme.Colors.Darker10
+                            ChevronHoverFill: =App.Theme.Colors.PrimaryForeground
+                            DefaultSelectedItems: =Parent.Default
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            DisplayFields: =["Value"]
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =App.Theme.Font
+                            HoverColor: =RGBA(0, 0, 0, 1)
+                            HoverFill: =App.Theme.Colors.Lighter70
+                            Items: =Choices([@Checklists].Status)
+                            PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                            PressedColor: =App.Theme.Colors.PrimaryForeground
+                            PressedFill: =App.Theme.Colors.Darker30
+                            SearchFields: =["Value"]
+                            SearchItems: =Choices(Checklists.Status,DataCardValue23_2.SearchText)
+                            SelectionColor: =App.Theme.Colors.PrimaryForeground
+                            SelectionFill: =App.Theme.Colors.Primary
+                            SelectMultiple: =false
+                            Size: =13
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey25_2.Y + DataCardKey25_2.Height + 5
+                            ZIndex: =12
+
+                        ErrorMessage22_2 As label:
+                            AutoHeight: =true
+                            Color: =RGBA(168, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            FontWeight: =FontWeight.Semibold
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardValue23_2.Y + DataCardValue23_2.Height
+                            ZIndex: =13
+
+                    information_transferred_to_DataCard2_2 As typedDataCard.comboBoxViewCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="information_transferred_to"
+                        Default: =ThisItem.information_transferred_to
+                        DisplayMode: =DisplayMode.View
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,information_transferred_to)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        Required: =false
+                        Update: =DataCardValue18_2.Selected
+                        Width: =800
+                        X: =0
+                        Y: =2
+                        ZIndex: =14
+
+                        StarVisible25_2 As label:
+                            Align: =Align.Center
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =DataCardKey23_2.Height
+                            Size: =13
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =DataCardKey23_2.Y
+                            ZIndex: =15
+
+                        DataCardKey23_2 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            Size: =13
+                            Text: |-
+                                ="Information transferred to:"
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =16
+
+                        DataCardValue18_2 As combobox:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            ChevronBackground: =App.Theme.Colors.Primary
+                            ChevronDisabledBackground: =RGBA(166, 166, 166, 1)
+                            ChevronDisabledFill: =RGBA(244, 244, 244, 1)
+                            ChevronFill: =App.Theme.Colors.PrimaryForeground
+                            ChevronHoverBackground: =App.Theme.Colors.Darker10
+                            ChevronHoverFill: =App.Theme.Colors.PrimaryForeground
+                            DefaultSelectedItems: =Parent.Default
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            DisplayFields: =["DisplayName","Email","Picture"]
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =App.Theme.Font
+                            HoverColor: =RGBA(0, 0, 0, 1)
+                            HoverFill: =App.Theme.Colors.Lighter70
+                            Items: =Choices([@Checklists].information_transferred_to)
+                            PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                            PressedColor: =App.Theme.Colors.PrimaryForeground
+                            PressedFill: =App.Theme.Colors.Darker30
+                            SearchFields: =["DisplayName"]
+                            SearchItems: =Choices(Checklists.information_transferred_to,DataCardValue18_2.SearchText)
+                            SelectionColor: =App.Theme.Colors.PrimaryForeground
+                            SelectionFill: =App.Theme.Colors.Primary
+                            SelectMultiple: =false
+                            Size: =13
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey23_2.Y + DataCardKey23_2.Height + 5
+                            ZIndex: =17
+
+                        ErrorMessage25_2 As label:
+                            AutoHeight: =true
+                            Color: =RGBA(168, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            FontWeight: =FontWeight.Semibold
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardValue18_2.Y + DataCardValue18_2.Height
+                            ZIndex: =18
+
+                    shift_DataCard1_2 As typedDataCard.comboBoxViewCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="shift"
+                        Default: =ThisItem.shift
+                        DisplayMode: =DisplayMode.View
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,shift)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        Required: =false
+                        Update: =DataCardValue29_2.Selected
+                        Width: =800
+                        X: =0
+                        Y: =3
+                        ZIndex: =19
+
+                        StarVisible24_2 As label:
+                            Align: =Align.Center
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =DataCardKey31_2.Height
+                            Size: =13
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =DataCardKey31_2.Y
+                            ZIndex: =20
+
+                        DataCardKey31_2 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            Size: =13
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =21
+
+                        DataCardValue29_2 As combobox:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            ChevronBackground: =App.Theme.Colors.Primary
+                            ChevronDisabledBackground: =RGBA(166, 166, 166, 1)
+                            ChevronDisabledFill: =RGBA(244, 244, 244, 1)
+                            ChevronFill: =App.Theme.Colors.PrimaryForeground
+                            ChevronHoverBackground: =App.Theme.Colors.Darker10
+                            ChevronHoverFill: =App.Theme.Colors.PrimaryForeground
+                            DefaultSelectedItems: =Parent.Default
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            DisplayFields: =["Value"]
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =App.Theme.Font
+                            HoverColor: =RGBA(0, 0, 0, 1)
+                            HoverFill: =App.Theme.Colors.Lighter70
+                            Items: =Choices([@Checklists].shift)
+                            PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                            PressedColor: =App.Theme.Colors.PrimaryForeground
+                            PressedFill: =App.Theme.Colors.Darker30
+                            SearchFields: =["Value"]
+                            SearchItems: =Choices(Checklists.shift,DataCardValue29_2.SearchText)
+                            SelectionColor: =App.Theme.Colors.PrimaryForeground
+                            SelectionFill: =App.Theme.Colors.Primary
+                            SelectMultiple: =false
+                            Size: =13
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey31_2.Y + DataCardKey31_2.Height + 5
+                            ZIndex: =22
+
+                        ErrorMessage24_2 As label:
+                            AutoHeight: =true
+                            Color: =RGBA(168, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            FontWeight: =FontWeight.Semibold
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardValue29_2.Y + DataCardValue29_2.Height
+                            ZIndex: =23
+
+                    Timestamp_DataCard2_2 As typedDataCard.textualViewCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="Timestamp"
+                        Default: =ThisItem.create_timestamp
+                        DisplayMode: =DisplayMode.View
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,create_timestamp)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =40
+                        Required: =false
+                        Width: =800
+                        X: =0
+                        Y: =4
+                        ZIndex: =24
+
+                        DataCardKey24_2 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            PaddingBottom: =0
+                            Size: =13
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =25
+
+                        DataCardValue22_2 As label:
+                            AutoHeight: =true
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(0, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =App.Theme.Font
+                            Height: =27
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =13
+                            Text: =Parent.Default
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey24_2.Y + DataCardKey24_2.Height + 5
+                            ZIndex: =26
+
+                    RemainingOperators_DataCard2_2 As typedDataCard.toggleViewCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="RemainingOperators"
+                        Default: =ThisItem.RemainingOperators
+                        DisplayMode: =DisplayMode.View
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,RemainingOperators)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        Required: =false
+                        Width: =800
+                        X: =0
+                        Y: =5
+                        ZIndex: =27
+
+                        DataCardKey35_2 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            Size: =13
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =28
+
+                        DataCardValue33_2 As toggleSwitch:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            Color: =RGBA(0, 0, 0, 1)
+                            Default: =Parent.Default
+                            DisplayMode: =Parent.DisplayMode
+                            FalseFill: =RGBA(128, 130, 133, 1)
+                            Font: =App.Theme.Font
+                            HandleFill: =RGBA(255, 255, 255, 1)
+                            Size: =13
+                            TrueFill: =App.Theme.Colors.Primary
+                            X: =30
+                            Y: =DataCardKey35_2.Y + DataCardKey35_2.Height + 5
+                            ZIndex: =29
+
+                    emergencies_incidents_DataCard1_2 As typedDataCard.toggleViewCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="emergencies_incident"
+                        Default: =ThisItem.emergencies_incidents
+                        DisplayMode: =DisplayMode.View
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,emergencies_incidents)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        Required: =false
+                        Width: =800
+                        X: =0
+                        Y: =6
+                        ZIndex: =30
+
+                        DataCardKey37_2 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            Size: =13
+                            Text: ="Were there any emergencies or reportable/adverse incidents?"
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =31
+
+                        DataCardValue35_2 As toggleSwitch:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            Color: =RGBA(0, 0, 0, 1)
+                            Default: =Parent.Default
+                            DisplayMode: =Parent.DisplayMode
+                            FalseFill: =RGBA(128, 130, 133, 1)
+                            Font: =App.Theme.Font
+                            HandleFill: =RGBA(255, 255, 255, 1)
+                            Size: =13
+                            TrueFill: =App.Theme.Colors.Primary
+                            X: =30
+                            Y: =DataCardKey37_2.Y + DataCardKey37_2.Height + 5
+                            ZIndex: =32
+
+                    emergencies_incidents_operator_DataCard3_2 As typedDataCard.comboBoxViewCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="emergencies_incidents_operator"
+                        Default: =ThisItem.emergencies_incidents_operator
+                        DisplayMode: =DisplayMode.View
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,emergencies_incidents_operator)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        Required: =false
+                        Update: =DataCardValue12_2.Selected
+                        Width: =800
+                        X: =0
+                        Y: =7
+                        ZIndex: =33
+
+                        StarVisible12_2 As label:
+                            Align: =Align.Center
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =DataCardKey12_2.Height
+                            Size: =13
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =DataCardKey12_2.Y
+                            ZIndex: =34
+
+                        DataCardKey12_2 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            Size: =13
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =35
+
+                        DataCardValue12_2 As combobox:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            ChevronBackground: =App.Theme.Colors.Primary
+                            ChevronDisabledBackground: =RGBA(166, 166, 166, 1)
+                            ChevronDisabledFill: =RGBA(244, 244, 244, 1)
+                            ChevronFill: =App.Theme.Colors.PrimaryForeground
+                            ChevronHoverBackground: =App.Theme.Colors.Darker10
+                            ChevronHoverFill: =App.Theme.Colors.PrimaryForeground
+                            DefaultSelectedItems: =Parent.Default
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            DisplayFields: =["DisplayName","Email","Picture"]
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =App.Theme.Font
+                            HoverColor: =RGBA(0, 0, 0, 1)
+                            HoverFill: =App.Theme.Colors.Lighter70
+                            Items: =Choices([@Checklists].emergencies_incidents_operator)
+                            PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                            PressedColor: =App.Theme.Colors.PrimaryForeground
+                            PressedFill: =App.Theme.Colors.Darker30
+                            SearchFields: =["DisplayName"]
+                            SearchItems: =Choices(Checklists.emergencies_incidents_operator,DataCardValue12_2.SearchText)
+                            SelectionColor: =App.Theme.Colors.PrimaryForeground
+                            SelectionFill: =App.Theme.Colors.Primary
+                            SelectMultiple: =false
+                            Size: =13
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey12_2.Y + DataCardKey12_2.Height + 5
+                            ZIndex: =36
+
+                        ErrorMessage12_2 As label:
+                            AutoHeight: =true
+                            Color: =RGBA(168, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            FontWeight: =FontWeight.Semibold
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardValue12_2.Y + DataCardValue12_2.Height
+                            ZIndex: =37
+
+                    emergencies_incidents_location_DataCard1_2 As typedDataCard.textualViewCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="emergencies_incidents_location"
+                        Default: =ThisItem.emergencies_incidents_location
+                        DisplayMode: =DisplayMode.View
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,emergencies_incidents_location)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =40
+                        Required: =false
+                        Width: =800
+                        X: =0
+                        Y: =8
+                        ZIndex: =38
+
+                        DataCardKey38_2 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            PaddingBottom: =0
+                            Size: =13
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =39
+
+                        DataCardValue36_2 As label:
+                            AutoHeight: =true
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(0, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =App.Theme.Font
+                            Height: =27
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =13
+                            Text: =Parent.Default
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey38_2.Y + DataCardKey38_2.Height + 5
+                            ZIndex: =40
+
+                    emergencies_incidents_details_DataCard2_2 As typedDataCard.textualViewCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="Emergencies"
+                        Default: =ThisItem.emergencies_incidents_details
+                        DisplayMode: =DisplayMode.View
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,emergencies_incidents_details)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =40
+                        Required: =false
+                        Width: =800
+                        X: =0
+                        Y: =9
+                        ZIndex: =41
+
+                        DataCardKey26_2 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            PaddingBottom: =0
+                            Size: =13
+                            Text: |-
+                                ="Emergencies or reportable/adverse incidents details: "
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =42
+
+                        DataCardValue24_2 As label:
+                            AutoHeight: =true
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(0, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =App.Theme.Font
+                            Height: =27
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =13
+                            Text: =Parent.Default
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey26_2.Y + DataCardKey26_2.Height + 5
+                            ZIndex: =43
+
+                    outstanding_complaints_DataCard1_2 As typedDataCard.toggleViewCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="outstanding_complaints"
+                        Default: =ThisItem.outstanding_complaints
+                        DisplayMode: =DisplayMode.View
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,outstanding_complaints)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        Required: =false
+                        Width: =800
+                        X: =0
+                        Y: =10
+                        ZIndex: =44
+
+                        DataCardKey32_2 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            Size: =13
+                            Text: ="Are there any outstanding complaints?"
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =45
+
+                        DataCardValue30_2 As toggleSwitch:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            Color: =RGBA(0, 0, 0, 1)
+                            Default: =Parent.Default
+                            DisplayMode: =Parent.DisplayMode
+                            FalseFill: =RGBA(128, 130, 133, 1)
+                            Font: =App.Theme.Font
+                            HandleFill: =RGBA(255, 255, 255, 1)
+                            Size: =13
+                            TrueFill: =App.Theme.Colors.Primary
+                            X: =30
+                            Y: =DataCardKey32_2.Y + DataCardKey32_2.Height + 5
+                            ZIndex: =46
+
+                    outstanding_complaints_operator_DataCard1_2 As typedDataCard.comboBoxViewCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="outstanding_complaints_operator"
+                        Default: =ThisItem.outstanding_complaints_operator
+                        DisplayMode: =DisplayMode.View
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,outstanding_complaints_operator)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        Required: =false
+                        Update: =DataCardValue13_2.Selected
+                        Width: =800
+                        X: =0
+                        Y: =11
+                        ZIndex: =47
+
+                        StarVisible19_2 As label:
+                            Align: =Align.Center
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =DataCardKey19_2.Height
+                            Size: =13
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =DataCardKey19_2.Y
+                            ZIndex: =48
+
+                        DataCardKey19_2 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            Size: =13
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =49
+
+                        DataCardValue13_2 As combobox:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            ChevronBackground: =App.Theme.Colors.Primary
+                            ChevronDisabledBackground: =RGBA(166, 166, 166, 1)
+                            ChevronDisabledFill: =RGBA(244, 244, 244, 1)
+                            ChevronFill: =App.Theme.Colors.PrimaryForeground
+                            ChevronHoverBackground: =App.Theme.Colors.Darker10
+                            ChevronHoverFill: =App.Theme.Colors.PrimaryForeground
+                            DefaultSelectedItems: =Parent.Default
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            DisplayFields: =["DisplayName","Email","Picture"]
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =App.Theme.Font
+                            HoverColor: =RGBA(0, 0, 0, 1)
+                            HoverFill: =App.Theme.Colors.Lighter70
+                            Items: =Choices([@Checklists].outstanding_complaints_operator)
+                            PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                            PressedColor: =App.Theme.Colors.PrimaryForeground
+                            PressedFill: =App.Theme.Colors.Darker30
+                            SearchFields: =["DisplayName"]
+                            SearchItems: =Choices(Checklists.outstanding_complaints_operator,DataCardValue13_2.SearchText)
+                            SelectionColor: =App.Theme.Colors.PrimaryForeground
+                            SelectionFill: =App.Theme.Colors.Primary
+                            SelectMultiple: =false
+                            Size: =13
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey19_2.Y + DataCardKey19_2.Height + 5
+                            ZIndex: =50
+
+                        ErrorMessage19_2 As label:
+                            AutoHeight: =true
+                            Color: =RGBA(168, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            FontWeight: =FontWeight.Semibold
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardValue13_2.Y + DataCardValue13_2.Height
+                            ZIndex: =51
+
+                    outstanding_complaints_location_DataCard1_2 As typedDataCard.textualViewCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="outstanding_complaints_location"
+                        Default: =ThisItem.outstanding_complaints_location
+                        DisplayMode: =DisplayMode.View
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,outstanding_complaints_location)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =40
+                        Required: =false
+                        Width: =800
+                        X: =0
+                        Y: =12
+                        ZIndex: =52
+
+                        DataCardKey33_2 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            PaddingBottom: =0
+                            Size: =13
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =53
+
+                        DataCardValue31_2 As label:
+                            AutoHeight: =true
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(0, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =App.Theme.Font
+                            Height: =27
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =13
+                            Text: =Parent.Default
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey33_2.Y + DataCardKey33_2.Height + 5
+                            ZIndex: =54
+
+                    outstanding_complaints_details_DataCard2_2 As typedDataCard.textualViewCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="OutstandingComplaints"
+                        Default: =ThisItem.outstanding_complaints_details
+                        DisplayMode: =DisplayMode.View
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,outstanding_complaints_details)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =40
+                        Required: =false
+                        Width: =800
+                        X: =0
+                        Y: =13
+                        ZIndex: =55
+
+                        DataCardKey27_2 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            PaddingBottom: =0
+                            Size: =13
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =56
+
+                        DataCardValue25_2 As label:
+                            AutoHeight: =true
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(0, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =App.Theme.Font
+                            Height: =27
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =13
+                            Text: =Parent.Default
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey27_2.Y + DataCardKey27_2.Height + 5
+                            ZIndex: =57
+
+                    interim_procedures_new_existing_DataCard2_2 As typedDataCard.toggleViewCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="interim_procedures_new_existing"
+                        Default: =ThisItem.interim_procedures_new_existing
+                        DisplayMode: =DisplayMode.View
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,interim_procedures_new_existing)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        Required: =false
+                        Width: =800
+                        X: =0
+                        Y: =14
+                        ZIndex: =58
+
+                        DataCardKey41_2 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            Size: =13
+                            Text: ="Are there any new or existing interim procedures?"
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =59
+
+                        DataCardValue39_2 As toggleSwitch:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            Color: =RGBA(0, 0, 0, 1)
+                            Default: =Parent.Default
+                            DisplayMode: =Parent.DisplayMode
+                            FalseFill: =RGBA(128, 130, 133, 1)
+                            Font: =App.Theme.Font
+                            HandleFill: =RGBA(255, 255, 255, 1)
+                            Size: =13
+                            TrueFill: =App.Theme.Colors.Primary
+                            X: =30
+                            Y: =DataCardKey41_2.Y + DataCardKey41_2.Height + 5
+                            ZIndex: =60
+
+                    interim_procedures_operator_DataCard1_2 As typedDataCard.comboBoxViewCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="interim_procedures_operator"
+                        Default: =ThisItem.interim_procedures_operator
+                        DisplayMode: =DisplayMode.View
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,interim_procedures_operator)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        Required: =false
+                        Update: =DataCardValue38_2.Selected
+                        Width: =800
+                        X: =0
+                        Y: =15
+                        ZIndex: =61
+
+                        StarVisible27_2 As label:
+                            Align: =Align.Center
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =DataCardKey40_2.Height
+                            Size: =13
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =DataCardKey40_2.Y
+                            ZIndex: =62
+
+                        DataCardKey40_2 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            Size: =13
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =63
+
+                        DataCardValue38_2 As combobox:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            ChevronBackground: =App.Theme.Colors.Primary
+                            ChevronDisabledBackground: =RGBA(166, 166, 166, 1)
+                            ChevronDisabledFill: =RGBA(244, 244, 244, 1)
+                            ChevronFill: =App.Theme.Colors.PrimaryForeground
+                            ChevronHoverBackground: =App.Theme.Colors.Darker10
+                            ChevronHoverFill: =App.Theme.Colors.PrimaryForeground
+                            DefaultSelectedItems: =Parent.Default
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            DisplayFields: =["DisplayName","Email","Picture"]
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =App.Theme.Font
+                            HoverColor: =RGBA(0, 0, 0, 1)
+                            HoverFill: =App.Theme.Colors.Lighter70
+                            Items: =Choices([@Checklists].interim_procedures_operator)
+                            PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                            PressedColor: =App.Theme.Colors.PrimaryForeground
+                            PressedFill: =App.Theme.Colors.Darker30
+                            SearchFields: =["DisplayName"]
+                            SearchItems: =Choices(Checklists.interim_procedures_operator,DataCardValue38_2.SearchText)
+                            SelectionColor: =App.Theme.Colors.PrimaryForeground
+                            SelectionFill: =App.Theme.Colors.Primary
+                            SelectMultiple: =false
+                            Size: =13
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey40_2.Y + DataCardKey40_2.Height + 5
+                            ZIndex: =64
+
+                        ErrorMessage27_2 As label:
+                            AutoHeight: =true
+                            Color: =RGBA(168, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            FontWeight: =FontWeight.Semibold
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardValue38_2.Y + DataCardValue38_2.Height
+                            ZIndex: =65
+
+                    interim_procedures_location_DataCard2_2 As typedDataCard.textualViewCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="interim_procedures_location"
+                        Default: =ThisItem.interim_procedures_location
+                        DisplayMode: =DisplayMode.View
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,interim_procedures_location)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =40
+                        Required: =false
+                        Width: =800
+                        X: =0
+                        Y: =16
+                        ZIndex: =66
+
+                        DataCardKey42_2 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            PaddingBottom: =0
+                            Size: =13
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =67
+
+                        DataCardValue40_2 As label:
+                            AutoHeight: =true
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(0, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =App.Theme.Font
+                            Height: =27
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =13
+                            Text: =Parent.Default
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey42_2.Y + DataCardKey42_2.Height + 5
+                            ZIndex: =68
+
+                    interim_procedures_details_DataCard1_2 As typedDataCard.textualViewCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="InterimProcedures"
+                        Default: =ThisItem.interim_procedures_details
+                        DisplayMode: =DisplayMode.View
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,interim_procedures_details)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =40
+                        Required: =false
+                        Width: =800
+                        X: =0
+                        Y: =17
+                        ZIndex: =69
+
+                        DataCardKey43_2 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            PaddingBottom: =0
+                            Size: =13
+                            Text: |-
+                                ="New or existing interim procedures details: "
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =70
+
+                        DataCardValue41_2 As label:
+                            AutoHeight: =true
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(0, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =App.Theme.Font
+                            Height: =27
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =13
+                            Text: =Parent.Default
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey43_2.Y + DataCardKey43_2.Height + 5
+                            ZIndex: =71
+
+                    SCADA_new_DataCard2_2 As typedDataCard.toggleViewCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="SCADA_new"
+                        Default: =ThisItem.SCADA_new
+                        DisplayMode: =DisplayMode.View
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,SCADA_new)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        Required: =false
+                        Width: =800
+                        X: =0
+                        Y: =18
+                        ZIndex: =72
+
+                        DataCardKey36_2 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            Size: =13
+                            Text: ="Anything new on SCADA?"
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =73
+
+                        DataCardValue34_2 As toggleSwitch:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            Color: =RGBA(0, 0, 0, 1)
+                            Default: =Parent.Default
+                            DisplayMode: =Parent.DisplayMode
+                            FalseFill: =RGBA(128, 130, 133, 1)
+                            Font: =App.Theme.Font
+                            HandleFill: =RGBA(255, 255, 255, 1)
+                            Size: =13
+                            TrueFill: =App.Theme.Colors.Primary
+                            X: =30
+                            Y: =DataCardKey36_2.Y + DataCardKey36_2.Height + 5
+                            ZIndex: =74
+
+                    SCADA_details_DataCard2_2 As typedDataCard.textualViewCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="SCADAUpdates"
+                        Default: =ThisItem.SCADA_details
+                        DisplayMode: =DisplayMode.View
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,SCADA_details)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =40
+                        Required: =false
+                        Width: =800
+                        X: =0
+                        Y: =19
+                        ZIndex: =75
+
+                        DataCardKey28_2 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            PaddingBottom: =0
+                            Size: =13
+                            Text: ="SCADA Details"
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =76
+
+                        DataCardValue26_2 As label:
+                            AutoHeight: =true
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(0, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =App.Theme.Font
+                            Height: =27
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =13
+                            Text: =Parent.Default
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey28_2.Y + DataCardKey28_2.Height + 5
+                            ZIndex: =77
+
+                    special_instruction_notes_DataCard2_2 As typedDataCard.textualViewCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="SpecialInstructions"
+                        Default: =ThisItem.special_instruction_notes
+                        DisplayMode: =DisplayMode.View
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,special_instruction_notes)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =40
+                        Required: =false
+                        Width: =800
+                        X: =0
+                        Y: =20
+                        ZIndex: =78
+
+                        DataCardKey29_2 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            PaddingBottom: =0
+                            Size: =13
+                            Text: |-
+                                ="Special instructions from operator for next shift: "
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =79
+
+                        DataCardValue27_2 As label:
+                            AutoHeight: =true
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(0, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =App.Theme.Font
+                            Height: =27
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =13
+                            Text: =Parent.Default
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey29_2.Y + DataCardKey29_2.Height + 5
+                            ZIndex: =80
+
+                    RO_name_DataCard1_2 As typedDataCard.comboBoxViewCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="ROName"
+                        Default: =ThisItem.RO_name
+                        DisplayMode: =DisplayMode.View
+                        DisplayName: =DataSourceInfo([@Checklists],DataSourceInfo.DisplayName,RO_name)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        Required: =false
+                        Update: =DataCardValue28_2.Selected
+                        Width: =800
+                        X: =0
+                        Y: =21
+                        ZIndex: =81
+
+                        StarVisible23_2 As label:
+                            Align: =Align.Center
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =DataCardKey30_2.Height
+                            Size: =13
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =DataCardKey30_2.Y
+                            ZIndex: =82
+
+                        DataCardKey30_2 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            Size: =13
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =83
+
+                        DataCardValue28_2 As combobox:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            ChevronBackground: =App.Theme.Colors.Primary
+                            ChevronDisabledBackground: =RGBA(166, 166, 166, 1)
+                            ChevronDisabledFill: =RGBA(244, 244, 244, 1)
+                            ChevronFill: =App.Theme.Colors.PrimaryForeground
+                            ChevronHoverBackground: =App.Theme.Colors.Darker10
+                            ChevronHoverFill: =App.Theme.Colors.PrimaryForeground
+                            DefaultSelectedItems: =Parent.Default
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            DisplayFields: =["DisplayName","Email","Picture"]
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =App.Theme.Font
+                            HoverColor: =RGBA(0, 0, 0, 1)
+                            HoverFill: =App.Theme.Colors.Lighter70
+                            Items: =Choices([@Checklists].RO_name)
+                            PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                            PressedColor: =App.Theme.Colors.PrimaryForeground
+                            PressedFill: =App.Theme.Colors.Darker30
+                            SearchFields: =["DisplayName"]
+                            SearchItems: =Choices(Checklists.RO_name,DataCardValue28_2.SearchText)
+                            SelectionColor: =App.Theme.Colors.PrimaryForeground
+                            SelectionFill: =App.Theme.Colors.Primary
+                            SelectMultiple: =false
+                            Size: =13
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey30_2.Y + DataCardKey30_2.Height + 5
+                            ZIndex: =84
+
+                        ErrorMessage23_2 As label:
+                            AutoHeight: =true
+                            Color: =RGBA(168, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            FontWeight: =FontWeight.Semibold
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardValue28_2.Y + DataCardValue28_2.Height
+                            ZIndex: =85
+
+    CancelButton2_1 As Button:
+        AccessibleLabel: ="Cancel form button"
+        Align: =Align.Center
+        Appearance: ='ButtonCanvas.Appearance'.Secondary
+        DisplayMode: =DisplayMode.Edit
+        Height: =32
+        Layout: ='ButtonCanvas.Layout'.IconBefore
+        OnSelect: =Navigate(Dashboard)
+        Text: ="Back"
+        Width: =120
+        X: =1104
+        Y: =36
+        ZIndex: =2
+
